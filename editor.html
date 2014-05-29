@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="templatable by shinelgz@2014">
+	<meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>mini-markdown例子</title>
+	<link rel="stylesheet" type="text/css" href="css/mini-mk.css">
+</head>
+<body>
+<textarea id="editor">
+#h1.center 迷你 - markdown
+---
+#b#
+#h2.r 爽吗 ?
+ #[http://i1.juyouqu.com/uploads/jq/2014/05/572801577624125164.jpg]#  
+#b#
+---
+
+#h2 * 5个标签自定义标签搞定一个漂亮的文档
+
+#b#
+   * \#b\# 块元素
+  * \#em\# 标签
+  * \#h1-6 标题
+ * \#tip\# 提示
+ *  \#[url]\# 链接
+当然，支持所有 html标签
+#b#
+---
+#h2# * tip的用法
+#tip.b \#tip这是tip的写法，#em.g#标签#em#的写法,其中.g 表示green的意思，当然，#em.r#红色 red#em#，#em.b#蓝色 blue#em#，#em.y#黄色 yellow#em#，下面对颜色也有类似用法。
+
+#h2 * 标题的用法
+#b#
+\#h1.g 标题的写法,支持颜色配对，支持 h1-h6
+#b#
+
+#h2 * b标签的用法
+#b#
+    * \#b\#表示信息块， block的意思，支持嵌套（看最下面），所以需要以\#/b\#结束,块不支颜色配置
+    *要显示\#要用 \ 转义哦
+#b#
+
+#h2 *em标签的用法
+#b#
+\#em.g\#标签\#/em#，#em.g#标签#em#的写法,其中.g 表示green的意思，当然，#em.r#红色 red#em#，#em.b#蓝色 blue#em#，#em.y#黄色 yellow#em#，下面对颜色也有类似用法。
+#b#
+
+#h2 *列表圆点
+
+#b#
+ * * 表示圆点并一行显示哦， 一行支持第1个圆点
+ * 再在首页配置中新增一个任务，【任务ID】，
+#b#
+
+#h2  *图片的写法
+#b#
+      \#[http://i1.juyouqu.com/uploads/jq/2014/05/572801577624125164.jpg]\#  
+      #[http://i1.juyouqu.com/uploads/jq/2014/05/572801577624125164.jpg]#  
+#b#
+
+#h2 *超链接的写法
+#b#
+  \#[http://www.qq.com] 腾讯官网 \#
+   #[http://www.qq.com] 腾讯官网 #
+#b#
+---
+
+#h2.r *英国ATM错吐双倍现金 银行称错在自己不必归还？
+#b#
+* #em.g#一楼#em#：腐朽的英国佬,奉劝你们不要在错误的道路上越走越远. 
+* #em.y#二楼#em#：必须立刻纠正错误,把刁民抓回去判处终身监禁,不得保释! 
+* #em.b#三楼：这不是明显给中国银行难堪嘛，别有用心的帝国主义。 
+* #em.r#四楼：不愧是水深火热的资本主义丫，竟敢不判无期！！！
+#b#
+
+#p.right shinelgz@163.com
+</textarea>
+<div id="view"></div>
+<div id="bar">
+	<button id="save" class="btn btn-large">搞定，我要保存</button>
+</div>
+<script src="lib/jquery.js" charset="utf-8"></script>
+<script src="js/mini-mk.js" charset="utf-8"></script>
+<script>
+	function resize () {
+		var height = $(window).height();
+		var width  = $(window).width();
+		$('#editor').css({height : height - 104, width : width/2-50});
+		$('#view').css({height : height - 104, width : width/2-140});
+	}
+	resize();
+	$(window).resize(resize);
+	$('#editor').on('keyup', function(e){
+		
+		var html = $('#editor').val()
+		html = App.doc.make(html);	
+			
+		$('#view').html(html);
+	});
+	$('#save').click(function(e){
+		e.preventDefault();
+		alert('保存成功');
+	});
+	var html = App.doc.make($('#editor').html());	
+	$('#view').html(html);
+</script>
+</body>
+</html>
